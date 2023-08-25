@@ -42,4 +42,7 @@ test-driver
 *.user
 Debug
 Release
+.vs
+.vscode
+out
 

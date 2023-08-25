@@ -46,7 +46,7 @@ Alternatively you can utilize the variable GPUJPEG_LIBRARIES::
 @PACKAGE_INIT@
 
 include("${CMAKE_CURRENT_LIST_DIR}/GPUJPEGTargets.cmake")
-set(GPUJPEG_LIBRARIES "-lgpujpeg")
+set(GPUJPEG_LIBRARIES "gpujpeg")
 if(NOT "@BUILD_SHARED_LIBS@")
     add_definitions("-DGPUJPEG_STATIC")
 endif()
