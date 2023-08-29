@@ -118,6 +118,8 @@ struct gpujpeg_device_info
     int register_count;
     /// Number of multiprocessors
     int multiprocessor_count;
+    //Number of asynchronous engines
+    int async_engine_count;
 };
 
 /** Device info for all devices */
@@ -389,6 +391,15 @@ gpujpeg_image_save_to_file(const char* filename, uint8_t* image, size_t image_si
  */
 GPUJPEG_API int
 gpujpeg_image_get_properties(const char *filename, struct gpujpeg_image_parameters *param_image, int file_exists);
+
+/**
+ * Malloc image data buffer by GPUJPEG (eg. gpujpeg_image_load_from_file())
+ *
+ * @param size  Image data buffer size
+ * @return Image data buffer if succeeds, otherwise nullptr
+ */
+GPUJPEG_API uint8_t*
+gpujpeg_image_malloc(size_t size);
 
 /**
  * Destroys image allocated by GPUJPEG (eg. gpujpeg_image_load_from_file())

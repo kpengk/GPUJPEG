@@ -156,6 +156,7 @@ gpujpeg_get_devices_info(void)
 #if CUDART_VERSION >= 2000
         device_info->multiprocessor_count = device_properties.multiProcessorCount;
 #endif
+        device_info->async_engine_count = device_properties.asyncEngineCount;
     }
 
     return devices_info;
@@ -184,6 +185,7 @@ gpujpeg_print_devices_info(void)
         printf("  Total amount of shared memory per block: %zu KiB\n", device_info->shared_memory / 1024);
         printf("  Total number of registers available per block: %d\n", device_info->register_count);
         printf("  Multiprocessors: %d\n", device_info->multiprocessor_count);
+        printf("  Async engine count: %d\n", device_info->async_engine_count);
     }
     return 0;
 }
@@ -1200,6 +1202,12 @@ gpujpeg_image_get_properties(const char *filename, struct gpujpeg_image_paramete
     }
 
     return 1;
+}
+
+uint8_t*
+gpujpeg_image_malloc(size_t size)
+{
+    return gpujpeg_cuda_malloc_host(size);
 }
 
 /* Documented at declaration */
